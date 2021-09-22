@@ -4,14 +4,14 @@ $("#currentDay").html(today);
 
 // create variable
 
-var saveBtn = $(".saveBtn");
+
 
 // past, present, furture status update by time block class from css file
 function timeBlockStatus() {
     var hour = moment().hours();
 
     $(".time-block").each(function () {
-        var currentHour = parseInt($(this).attr("id"));
+        var currentHour = $(this).attr("id");
 
 
         if (currentHour > hour) {
@@ -23,5 +23,15 @@ function timeBlockStatus() {
         }
     })
 };
+timeBlockStatus();
+
+var saveBtn = $(".saveBtn");
+saveBtn.on('click', function () {
+
+    var time = $(this).siblings('.hour').text();
+    var schedule = $(this).siblings('.schedule').value();
+
+    localStorage.setItem(time, schedule);
+})
 
 
